@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { setSidebarOn, getSidebarStatus } from '../../store/sidebarSlice';
 import { getAllCarts, getCartItemsCount, getCartTotal } from '../../store/cartSlice';
@@ -13,10 +13,15 @@ const Navbar = () => {
     const itemsCount = useSelector(getCartItemsCount);
     const isSidebarOn = useSelector(getSidebarStatus);
     const [searchTerm, setSearchTerm] = useState("");
+    const navigate = useNavigate();
 
     const handleSearchTerm = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        evt.preventDefault();
+        // evt.preventDefault();
         setSearchTerm(evt.target.value);
+    }
+
+    const onHandleClick = () => {
+        navigate(`search/${searchTerm}`)
     }
 
     useEffect(() => {
@@ -50,11 +55,15 @@ const Navbar = () => {
                             <input type="text"
                                 className='form-control fs-14'
                                 placeholder="I'm looking for..."
+                                value={searchTerm}
                                 onChange={(e) => handleSearchTerm(e)}
                             />
-                            <Link to={`search/${searchTerm}`} className='text-white search-btn flex align-center justify-center'>
+                            <button
+                                onClick={onHandleClick}
+                                className='text-white search-btn flex align-center justify-center'
+                            >
                                 <i className='fa-solid fa-magnifying-glass'></i>
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>
