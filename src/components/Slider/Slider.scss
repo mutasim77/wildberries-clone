@@ -1,0 +1,17 @@
+.slider-item{
+    max-height: 300px;
+    border-radius: 10px;
+    cursor: pointer;
+    
+     > img{
+        border-radius: 10px;
+     }
+}
+
+.slick-list{
+    border-radius: 10px;
+}
+
+.slider-content{
+    overflow-y: hidden;
+}

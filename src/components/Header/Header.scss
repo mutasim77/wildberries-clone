@@ -1,0 +1,57 @@
+@import '../../styles/variables.scss';
+
+.header{
+    background: rgb(249,78,48);
+    background: linear-gradient(to right,#cb11ab 0,#481173 100%) no-repeat;
+
+    .header-cnt-top{
+        border-bottom: 1px solid #fff;
+    }
+
+    .currency{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        > img {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+    }
+
+    .location{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+    }
+
+    .vert-line{
+      background-color: lighten(#fff, 10%);
+    }   
+
+    .social-links{
+        cursor: pointer;
+    }
+
+    .fs-13{
+        color: rgb(255, 255, 255, .7);
+    }
+
+    .fa-bars{
+        border: 1px solid #fff;
+        padding: 7px;
+        border-radius: 7px;
+    }
+    
+    @media screen and (max-width: 992px){
+        .header-cnt-top{
+            flex-direction: column;
+            .header-cnt-top-l{
+                margin-bottom: 4px;
+            }
+        }
+    }
+    
+}
