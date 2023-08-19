@@ -219,6 +219,13 @@ input, textarea, select{
   background-color: lighten($clr-orange, 10%);
   height: 16px;
   margin: 0 12px;
+
+  &-pink{
+    width: 2px;
+    height: 16px;
+    margin: 0 12px;
+    background-color: #481173;
+  }
 }
 
 .no-wrap{

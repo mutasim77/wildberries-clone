@@ -89,12 +89,12 @@ const ProductSinglePage = () => {
                                             {product.rating}
                                         </span>
                                     </div>
-                                    <div className='vert-line'></div>
+                                    <div className='vert-line-pink'></div>
                                     <div className='brand'>
                                         <span className='text-pink fw-5'>Brand:</span>
                                         <span className='mx-1'>{product.brand}</span>
                                     </div>
-                                    <div className='vert-line'></div>
+                                    <div className='vert-line-pink'></div>
                                     <div className='brand'>
                                         <span className='text-pink fw-5'>Category:</span>
                                         <span className='mx-1 text-capitalize'>
@@ -114,11 +114,11 @@ const ProductSinglePage = () => {
                                     </div>
 
                                     <div className='flex align-center my-1'>
-                                        <div className='new-price fw-5 font-poppins fs-24 text-orange'>
+                                        <div className='new-price fw-5 font-poppins fs-24 text-pink'>
                                             {formatPrice(discountedPrice)}
                                         </div>
                                         <div className='discount bg-orange fs-13 text-white fw-6 font-poppins'>
-                                            {product?.discountPercentage}% OFF
+                                            {product.discountPercentage}% OFF
                                         </div>
                                     </div>
                                 </div>
