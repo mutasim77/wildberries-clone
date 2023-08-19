@@ -6,22 +6,30 @@ import { getAllCarts, getCartItemsCount, getCartTotal } from '../../store/cartSl
 import CartModal from '../CartModal/CartModal';
 
 import "./Navbar.scss";
+import { IProduct } from '../../types';
 
 const Navbar = () => {
     const dispatch = useDispatch();
-    const carts = useSelector(getAllCarts);
+    const carts: IProduct[] = useSelector(getAllCarts);
     const itemsCount = useSelector(getCartItemsCount);
     const isSidebarOn = useSelector(getSidebarStatus);
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
 
     const handleSearchTerm = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        // evt.preventDefault();
         setSearchTerm(evt.target.value);
     }
 
     const onHandleClick = () => {
-        navigate(`search/${searchTerm}`)
+        navigate(`search/${searchTerm}`);
+        setSearchTerm('');
+    }
+
+    const onHandleKeyDown = async (evt: React.KeyboardEvent) => {
+        if (evt.key === 'Enter') {
+            navigate(`search/${searchTerm}`);
+            setSearchTerm('');
+        }
     }
 
     useEffect(() => {
@@ -57,6 +65,7 @@ const Navbar = () => {
                                 placeholder="I'm looking for..."
                                 value={searchTerm}
                                 onChange={(e) => handleSearchTerm(e)}
+                                onKeyDown={onHandleKeyDown}
                             />
                             <button
                                 onClick={onHandleClick}

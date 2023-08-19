@@ -26,8 +26,7 @@
     }
     &::-webkit-scrollbar-thumb{
         border-radius: 10px;
-        background-color: lighten($clr-light-orange, 5%);
-        outline: 1px solid $clr-light-orange;
+        background-color: rgb(203, 17, 171, .8);
     }
 
     &::after{
@@ -44,7 +43,6 @@
         color: rgba(0, 0, 0, 0.6);
         margin-bottom: 12px;
     }
-
     &-list{
         .cart-modal-item{
             grid-template-columns: 64px auto 65px;
@@ -57,9 +55,11 @@
             &-title{
                 color: rgba(0, 0, 0, 0.85);
             }
+            &-price{
+                color: #cb11ab;
+            }
         }
     }
-
     &-empty{
         img{
             width: 120px;

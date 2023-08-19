@@ -84,19 +84,19 @@ const ProductSinglePage = () => {
                                 </div>
                                 <div className='info flex align-center flex-wrap fs-14'>
                                     <div className='rating'>
-                                        <span className='text-orange fw-5'>Rating:</span>
+                                        <span className='text-pink fw-5'>Rating:</span>
                                         <span className='mx-1'>
                                             {product.rating}
                                         </span>
                                     </div>
                                     <div className='vert-line'></div>
                                     <div className='brand'>
-                                        <span className='text-orange fw-5'>Brand:</span>
+                                        <span className='text-pink fw-5'>Brand:</span>
                                         <span className='mx-1'>{product.brand}</span>
                                     </div>
                                     <div className='vert-line'></div>
                                     <div className='brand'>
-                                        <span className='text-orange fw-5'>Category:</span>
+                                        <span className='text-pink fw-5'>Category:</span>
                                         <span className='mx-1 text-capitalize'>
                                             {product.category.replace("-", " ")}
                                         </span>
