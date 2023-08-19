@@ -109,6 +109,7 @@ input, textarea, select{
   &-dark{color: $clr-dark;}
   &-gray{color: $clr-gray;}
   &-danger{color: $clr-danger;}
+  &-pink{color: $clr-pink;}
 }
 
 .bg{
@@ -122,6 +123,7 @@ input, textarea, select{
   &-dark{background-color: $clr-dark;}
   &-danger{background-color: $clr-danger;}
   &-gray{background-color: $clr-gray;}
+  &-pink{background-color: $clr-pink;}
 }
 
 .font{

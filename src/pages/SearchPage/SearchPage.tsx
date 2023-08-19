@@ -26,7 +26,7 @@ const SearchPage = () => {
                 <div className='container'>
                     <div className='py-5'>
                         <div className='title-md'>
-                            <h3>Search results:</h3>
+                            <h3>results for : <span style={{ color: '#cb11ab' }}>{searchTerm}</span></h3>
                         </div>
                         <br />
                         {searchProductsStatus === STATUS.LOADING ?
