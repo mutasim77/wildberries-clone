@@ -6,6 +6,7 @@ export interface IProduct {
     price: number;
     brand: string;
     discountPercentage: number;
+    description?: string;
     rating?: number;
     discountedPrice?: number;
     stock?: number | undefined;

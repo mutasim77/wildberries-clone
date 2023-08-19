@@ -1,22 +1,23 @@
-import React, { useEffect } from 'react';
-import "./SearchPage.scss";
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { STATUS } from '../../utils/status';
-import Loader from '../../components/Loader/Loader';
-import ProductList from '../../components/ProductList/ProductList';
 import { fetchAsyncSearchProduct, getSearchProducts, getSearchProductsStatus, clearSearch } from '../../store/searchSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import ProductList from '../../components/ProductList/ProductList';
+import Loader from '../../components/Loader/Loader';
+
+import "./SearchPage.scss";
 
 const SearchPage = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+    const searchProducts = useAppSelector(getSearchProducts);
+    const searchProductsStatus = useAppSelector(getSearchProductsStatus);
     const { searchTerm } = useParams();
-    const searchProducts = useSelector(getSearchProducts);
-    const searchProductsStatus = useSelector(getSearchProductsStatus);
 
     useEffect(() => {
         dispatch(clearSearch());
         dispatch(fetchAsyncSearchProduct(searchTerm));
-    }, [searchTerm]);
+    }, [dispatch, searchTerm]);
 
     if (searchProducts.length === 0) {
         return (
@@ -39,8 +40,11 @@ const SearchPage = () => {
                             <h3>Search results:</h3>
                         </div>
                         <br />
-                        {
-                            searchProductsStatus === STATUS.LOADING ? <Loader /> : <ProductList products={searchProducts} />
+                        {searchProductsStatus === STATUS.LOADING ?
+                            <Loader />
+                            :
+                            <ProductList products={searchProducts}
+                            />
                         }
                     </div>
                 </div>

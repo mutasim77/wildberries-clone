@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { fetchAsyncProductSingle, getProductSingle, getSingleProductStatus } from '../../store/productSlice';
 import { STATUS } from '../../utils/status';
-import { formatPrice } from "../../utils/helpers";
+import { formatPrice, calculateDiscount } from "../../utils/helpers";
 import { addToCart, getCartMessageStatus, setCartMessageOff, setCartMessageOn } from '../../store/cartSlice';
+import { IProduct } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import CartMessage from "../../components/CartMessage/CartMessage";
 import Loader from "../../components/Loader/Loader";
 
 import "./ProductSinglePage.scss";
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { IProduct } from '../../types';
 
 const ProductSinglePage = () => {
     const { id } = useParams();
     const dispatch = useAppDispatch();
-    const product = useAppSelector(getProductSingle);
+    const product: IProduct = useAppSelector(getProductSingle);
     const cartMessageStatus = useAppSelector(getCartMessageStatus);
     const productSingleStatus = useAppSelector(getSingleProductStatus);
 
@@ -32,15 +32,14 @@ const ProductSinglePage = () => {
 
     }, [cartMessageStatus, dispatch, id]);
 
-    const discountedPrice: number = (product.price) - (product.price * (product.discountPercentage / 100));
+    const discountedPrice = calculateDiscount(product.price, product.discountPercentage);
 
     const increaseQty = () => setQuantity((prevState) => prevState + 1);
     const decreaseQty = () => setQuantity((prevState) => prevState === 1 ? prevState : prevState - 1);
 
     const addToCartHandler = (product: IProduct) => {
         const totalPrice = quantity * discountedPrice;
-
-        dispatch(addToCart({ ...product, quantity: quantity, totalPrice, discountedPrice }));
+        dispatch(addToCart({ ...product, quantity, totalPrice, discountedPrice }));
         dispatch(setCartMessageOn());
     }
 
@@ -56,57 +55,50 @@ const ProductSinglePage = () => {
                         <div className='product-single-l'>
                             <div className='product-img'>
                                 <div className='product-img-zoom'>
-                                    <img src={product ? (product.images ? product.images[0] : "") : ""} alt="" className='img-cover' />
+                                    <img src={product.images[0]} alt={product.title} className='img-cover' />
                                 </div>
 
                                 <div className='product-img-thumbs flex align-center my-2'>
                                     <div className='thumb-item'>
-                                        <img src={
-                                            product ? (product.images ? product.images[1] : "") : ""
-                                        } alt="" className='img-cover' />
+                                        <img src={product.images[1]} alt={product.title} className='img-cover' />
                                     </div>
                                     <div className='thumb-item'>
-                                        <img src={
-                                            product ? (product.images ? product.images[2] : "") : ""
-                                        } alt="" className='img-cover' />
+                                        <img src={product.images[2]} alt={product.title} className='img-cover' />
                                     </div>
                                     <div className='thumb-item'>
-                                        <img src={
-                                            product ? (product.images ? product.images[3] : "") : ""
-                                        } alt="" className='img-cover' />
+                                        <img src={product.images[3]} alt={product.title} className='img-cover' />
                                     </div>
                                     <div className='thumb-item'>
-                                        <img src={
-                                            product ? (product.images ? product.images[4] : "") : ""
-                                        } alt="" className='img-cover' />
+                                        <img src={product.images[4]} alt={product.title} className='img-cover' />
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
                         <div className='product-single-r'>
                             <div className='product-details font-manrope'>
-                                <div className='title fs-20 fw-5'>{product?.title}</div>
+                                <div className='title fs-20 fw-5'>{product.title}</div>
                                 <div>
-                                    <p className='para fw-3 fs-15'>{product?.description}</p>
+                                    <p className='para fw-3 fs-15'>{product.description}</p>
                                 </div>
                                 <div className='info flex align-center flex-wrap fs-14'>
                                     <div className='rating'>
                                         <span className='text-orange fw-5'>Rating:</span>
                                         <span className='mx-1'>
-                                            {product?.rating}
+                                            {product.rating}
                                         </span>
                                     </div>
                                     <div className='vert-line'></div>
                                     <div className='brand'>
                                         <span className='text-orange fw-5'>Brand:</span>
-                                        <span className='mx-1'>{product?.brand}</span>
+                                        <span className='mx-1'>{product.brand}</span>
                                     </div>
                                     <div className='vert-line'></div>
                                     <div className='brand'>
                                         <span className='text-orange fw-5'>Category:</span>
                                         <span className='mx-1 text-capitalize'>
-                                            {product?.category ? product.category.replace("-", " ") : ""}
+                                            {product.category.replace("-", " ")}
                                         </span>
                                     </div>
                                 </div>
@@ -134,34 +126,43 @@ const ProductSinglePage = () => {
                                 <div className='qty flex align-center my-4'>
                                     <div className='qty-text'>Quantity:</div>
                                     <div className='qty-change flex align-center mx-3'>
-                                        <button type="button" className='qty-decrease flex align-center justify-center' onClick={() => decreaseQty()}>
+                                        <button
+                                            type="button"
+                                            className='qty-decrease flex align-center justify-center'
+                                            onClick={() => decreaseQty()}
+                                        >
                                             <i className='fas fa-minus'></i>
                                         </button>
                                         <div className="qty-value flex align-center justify-center">{quantity}</div>
-                                        <button type="button" className='qty-increase flex align-center justify-center' onClick={() => increaseQty()}>
+                                        <button
+                                            type="button"
+                                            className='qty-increase flex align-center justify-center'
+                                            onClick={() => increaseQty()}
+                                        >
                                             <i className='fas fa-plus'></i>
                                         </button>
                                     </div>
-                                    {
-                                        (product?.stock === 0) ? <div className='qty-error text-uppercase bg-danger text-white fs-12 ls-1 mx-2 fw-5'>out of stock</div> : ""
-                                    }
                                 </div>
 
                                 <div className='btns'>
                                     <button type="button" className='add-to-cart-btn btn'>
                                         <i className='fas fa-shopping-cart'></i>
-                                        <span className='btn-text mx-2' onClick={() => { addToCartHandler(product) }}>add to cart</span>
+                                        <span className='btn-text mx-2'
+                                            onClick={() => { addToCartHandler(product) }}
+                                        >
+                                            add to cart
+                                        </span>
                                     </button>
                                     <button type="button" className='buy-now btn mx-3'>
                                         <span className='btn-text'>buy now</span>
                                     </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             {cartMessageStatus && <CartMessage />}
         </main>
     )
