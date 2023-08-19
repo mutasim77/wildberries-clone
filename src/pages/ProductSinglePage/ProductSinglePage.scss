@@ -112,19 +112,21 @@
                     .btn{
                         height: 46px;
                         font-size: 15px;
-                        border: 1px solid $clr-orange;
+                        border: 1px solid $clr-pink;
                         padding: 0 1.8rem;
                         transition: $transition-ease;
-                        
+                        border-radius: 7px;
+
                         &-text{
                             text-transform: capitalize;
                         }
                         &:first-child{
-                            background-color: #FFEEE8;
-                            color: $clr-orange;
+                            background-color: #ea97f2;
+                            border: 1px solid #ea97f2;
+                            color:#000;
                         }
                         &:last-child{
-                            background-color: $clr-orange;
+                            background-color: $clr-pink;
                             color: white;
                         }
                         &:hover{

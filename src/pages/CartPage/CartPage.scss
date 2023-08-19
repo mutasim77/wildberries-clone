@@ -9,12 +9,12 @@
     .shopping-btn{
         padding: 0.65rem 2.8rem;
         margin-top: 1.6rem;
-        border: 1px solid $clr-orange;
+        border: 1px solid $clr-pink;
         transition: $transition-ease;
 
         &:hover{
             background-color: transparent;
-            color: $clr-orange;
+            color: $clr-pink;
         }
     }
 }
@@ -44,12 +44,13 @@
     .cart-ctable{
         min-width: 1000px;
         .cart-ctr{
-            grid-template-columns: 1fr 4fr 2fr 2fr 2fr 2fr;
+            grid-template-columns: 1fr 1fr 3fr 2fr 2fr 2fr 2fr;
             min-height: 40px;
             border-bottom: 1px solid $clr-whitesmoke;
             display: grid;
             align-items: center!important;
         }
+
         .cart-chead{
             margin-bottom: 2rem;
             padding-right: 2rem;
@@ -97,12 +98,12 @@
             }
 
             .clear-cart-btn{
-                border: 1px solid $clr-danger;
+                border: 1px solid $clr-pink;
                 padding: 0.7rem 1rem;
                 transition: $transition-ease;
-
+                color: $clr-pink;
                 &:hover{
-                    background-color: $clr-danger;
+                    background-color: $clr-pink;
                     color: $clr-white;
                 }
             }
@@ -110,6 +111,13 @@
                 padding: 0.8rem 2.8rem;
                 margin-top: 0.7rem;
             }
+        }
+    }
+
+    &-ctxt{
+        > img{
+            width: 45px;
+            border-radius: 7px;
         }
     }
 }

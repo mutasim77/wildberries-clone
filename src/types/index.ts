@@ -11,4 +11,6 @@ export interface IProduct {
     discountedPrice?: number;
     stock?: number | undefined;
     thumbnail: string;
+    quantity?: number;
+    totalPrice?: number;
 }
