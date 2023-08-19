@@ -8,5 +8,5 @@ export interface IProduct {
     discountPercentage: number;
     rating?: number;
     discountedPrice?: number;
+    stock?: number | undefined;
 }
-

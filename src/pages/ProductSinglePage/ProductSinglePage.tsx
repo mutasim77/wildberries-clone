@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
-import "./ProductSinglePage.scss";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { fetchAsyncProductSingle, getProductSingle, getSingleProductStatus } from '../../store/productSlice';
 import { STATUS } from '../../utils/status';
-import Loader from "../../components/Loader/Loader";
 import { formatPrice } from "../../utils/helpers";
 import { addToCart, getCartMessageStatus, setCartMessageOff, setCartMessageOn } from '../../store/cartSlice';
 import CartMessage from "../../components/CartMessage/CartMessage";
+import Loader from "../../components/Loader/Loader";
+
+import "./ProductSinglePage.scss";
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { IProduct } from '../../types';
 
 const ProductSinglePage = () => {
     const { id } = useParams();
-    const dispatch = useDispatch();
-    const product = useSelector(getProductSingle);
-    const productSingleStatus = useSelector(getSingleProductStatus);
+    const dispatch = useAppDispatch();
+    const product = useAppSelector(getProductSingle);
+    const cartMessageStatus = useAppSelector(getCartMessageStatus);
+    const productSingleStatus = useAppSelector(getSingleProductStatus);
+
     const [quantity, setQuantity] = useState(1);
-    const cartMessageStatus = useSelector(getCartMessageStatus);
 
     // getting single product
     useEffect(() => {
@@ -26,37 +29,24 @@ const ProductSinglePage = () => {
                 dispatch(setCartMessageOff());
             }, 2000);
         }
-    }, [cartMessageStatus]);
 
-    let discountedPrice = (product?.price) - (product?.price * (product?.discountPercentage / 100));
-    if (productSingleStatus === STATUS.LOADING) {
-        return <Loader />
-    }
+    }, [cartMessageStatus, dispatch, id]);
 
-    const increaseQty = () => {
-        setQuantity((prevQty) => {
-            let tempQty = prevQty + 1;
-            if (tempQty > product?.stock) tempQty = product?.stock;
-            return tempQty;
-        })
-    }
+    const discountedPrice: number = (product.price) - (product.price * (product.discountPercentage / 100));
 
-    const decreaseQty = () => {
-        setQuantity((prevQty) => {
-            let tempQty = prevQty - 1;
-            if (tempQty < 1) tempQty = 1;
-            return tempQty;
-        })
-    }
+    const increaseQty = () => setQuantity((prevState) => prevState + 1);
+    const decreaseQty = () => setQuantity((prevState) => prevState === 1 ? prevState : prevState - 1);
 
-    const addToCartHandler = (product) => {
-        let discountedPrice = (product?.price) - (product?.price * (product?.discountPercentage / 100));
-        let totalPrice = quantity * discountedPrice;
+    const addToCartHandler = (product: IProduct) => {
+        const totalPrice = quantity * discountedPrice;
 
         dispatch(addToCart({ ...product, quantity: quantity, totalPrice, discountedPrice }));
         dispatch(setCartMessageOn());
     }
 
+    if (productSingleStatus === STATUS.LOADING) {
+        return <Loader />
+    }
 
     return (
         <main className='py-5 bg-whitesmoke'>

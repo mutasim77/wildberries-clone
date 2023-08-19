@@ -6,10 +6,10 @@ export const formatPrice = (price) => {
 }
 
 export const shuffleArray = (array) => {
-    const shuffledArray = [...array]; // Create a shallow copy of the original array
+    const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]; // Swap elements
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
     }
     return shuffledArray;
 }
