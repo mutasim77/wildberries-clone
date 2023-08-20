@@ -28,7 +28,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
                             {formatPrice(product.price)}
                         </span>
                         <span className='new-price'>
-                            {formatPrice(product.discountedPrice)}
+                            {formatPrice(Number(product.discountedPrice))}
                         </span>
                         <span className='discount fw-6'>
                             ({product?.discountPercentage}% Off)

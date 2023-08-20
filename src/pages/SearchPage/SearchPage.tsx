@@ -3,11 +3,9 @@ import { useParams } from 'react-router-dom';
 import { STATUS } from '../../utils/status';
 import { fetchAsyncSearchProduct, getSearchProducts, getSearchProductsStatus, clearSearch } from '../../store/searchSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import ProductList from '../../components/ProductList/ProductList';
-import Loader from '../../components/Loader/Loader';
+import { ProductList, Loader, NoProduct } from '../../components';
 
 import "./SearchPage.scss";
-import NoProduct from '../../components/NoProduct/NoProduct';
 
 const SearchPage = () => {
     const dispatch = useAppDispatch();
