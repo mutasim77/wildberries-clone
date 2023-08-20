@@ -1,7 +1,8 @@
-import "./CartModal.scss";
 import { shopping_cart } from '../../utils/images';
 import { formatPrice } from '../../utils/helpers';
 import { IProduct } from "../../types";
+
+import "./CartModal.scss";
 
 interface CartModalProps {
     carts: IProduct[];

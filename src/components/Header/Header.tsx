@@ -1,7 +1,8 @@
-import "./Header.scss";
 import { Link } from 'react-router-dom';
 import Navbar from "../Navbar/Navbar";
 import { currency } from "../../utils/images";
+
+import "./Header.scss";
 
 const Header = () => {
     return (

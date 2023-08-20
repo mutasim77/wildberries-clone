@@ -16,6 +16,7 @@
     "isolatedModules": true,
     "allowJs": true,
     "noEmit": true,
+    "strictNullChecks": false,
     "jsx": "react-jsx",
     /* Linting */
     "strict": true,

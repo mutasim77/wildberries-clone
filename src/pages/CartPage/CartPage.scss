@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .empty-cart{
-    min-height: 60vh;
+    min-height: 65vh;
     img{
         width: 120px;
         margin-bottom: 1rem;
@@ -68,10 +68,12 @@
             color: rgba(0, 0, 0, 0.6);
         }
         .delete-btn{
+            background-color: $clr-danger;
+            border-radius: 7px;
             font-size: 14px;
             transition: $transition-ease;
             &:hover{
-                color: $clr-danger;
+                background-color: #ed727e;
             }
         }
         .qty-change{

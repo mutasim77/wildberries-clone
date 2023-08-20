@@ -5,9 +5,7 @@ import { fetchAsyncProducts, getAllProducts, getAllProductsStatus } from '../../
 import { STATUS } from '../../utils/status';
 import { shuffleArray } from '../../utils/helpers';
 import { IProduct } from '../../types';
-import Slider from '../../components/Slider/Slider';
-import ProductList from "../../components/ProductList/ProductList";
-import Loader from "../../components/Loader/Loader";
+import { Slider, ProductList, Loader } from '../../components';
 
 import "./HomePage.scss";
 

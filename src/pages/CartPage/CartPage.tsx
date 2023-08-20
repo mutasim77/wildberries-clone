@@ -133,7 +133,7 @@ const DisplayAllItems = ({ carts, dispatch }: CartProps) => {
                 <div className='cart-ctd'>
                     <button
                         type="button"
-                        className='delete-btn text-dark'
+                        className='delete-btn text-white py-2 px-3'
                         onClick={() => dispatch(removeFromCart(cart.id))}
                     >
                         Delete

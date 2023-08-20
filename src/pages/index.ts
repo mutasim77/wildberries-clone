@@ -5,4 +5,10 @@ import SearchPage from "../pages/SearchPage/SearchPage";
 import HomePage from '../pages/HomePage/HomePage';
 
 
-export { HomePage, CategoryProduct, ProductSingle, CartPage, SearchPage };
+export {
+    HomePage,
+    CategoryProduct,
+    ProductSingle,
+    CartPage,
+    SearchPage
+};

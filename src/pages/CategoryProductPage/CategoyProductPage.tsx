@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { STATUS } from '../../utils/status';
 import { getAllProductsByCategory, getCategoryProductsStatus, fetchAsyncProductsOfCategory } from '../../store/categorySlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import Loader from '../../components/Loader/Loader';
-import ProductList from "../../components/ProductList/ProductList";
+import { Loader, ProductList } from '../../components';
 
 import "./CategoryProductPage.scss";
 

@@ -1,5 +1,6 @@
-import "./Loader.scss";
 import { loader } from "../../utils/images";
+
+import "./Loader.scss";
 
 const Loader = () => {
     return (

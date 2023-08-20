@@ -6,8 +6,7 @@ import { formatPrice, calculateDiscount } from "../../utils/helpers";
 import { addToCart, getCartMessageStatus, setCartMessageOff, setCartMessageOn } from '../../store/cartSlice';
 import { IProduct } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import CartMessage from "../../components/CartMessage/CartMessage";
-import Loader from "../../components/Loader/Loader";
+import { Loader, CartMessage } from '../../components';
 
 import "./ProductSinglePage.scss";
 
