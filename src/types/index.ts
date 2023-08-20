@@ -10,7 +10,7 @@ export interface IProduct {
     rating?: number;
     discountedPrice?: number;
     stock?: number | undefined;
-    thumbnail: string;
+    thumbnail?: string;
     quantity?: number;
     totalPrice?: number;
 }
